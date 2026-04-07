@@ -16,6 +16,18 @@ export default {
           light: '#FFB088',
           dark: '#E55A2B',
         },
+        orange: {
+          50: '#FFF5F0',
+          100: '#FFE8DC',
+          200: '#FFD1B9',
+          300: '#FFB088',
+          400: '#FF8C42',
+          500: '#FF6B35',
+          600: '#E55A2B',
+          700: '#CC4A1F',
+          800: '#B33A13',
+          900: '#992A07',
+        },
         dark: {
           DEFAULT: '#0A0A0A',
           light: '#1A1A1A',

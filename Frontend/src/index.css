@@ -1,54 +1,22 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap');
 
-@theme {
-  --color-primary: #FF6B35;
-  --color-primary-hover: #FF8C42;
-  --color-primary-light: #FFB088;
-  --color-primary-dark: #E55A2B;
-  --color-dark: #0A0A0A;
-  --color-dark-light: #1A1A1A;
-  --color-dark-lighter: #2A2A2A;
-  --color-light: #FFFFFF;
-  --color-light-gray: #F8F9FA;
-  --color-light-border: #E5E7EB;
-  --color-light-card: #F3F4F6;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 @layer base {
-  body {
-    @apply bg-light text-dark m-0;
-  }
-  
   * {
-    @apply box-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    @apply bg-white text-gray-900;
   }
 
   h1 {
@@ -70,30 +38,58 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-hover text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
   .btn-secondary {
-    @apply bg-dark hover:bg-dark-light text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
+    @apply bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
+    @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-gray-100 text-gray-900 font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
   .input-field {
-    @apply w-full px-4 py-3 border border-light-border rounded-button focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-300 bg-white text-dark min-h-[44px];
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-300 bg-white text-gray-900 min-h-[44px];
   }
   
   .card {
-    @apply bg-white rounded-card shadow-card p-6 transition-shadow duration-300 hover:shadow-card-hover;
+    @apply bg-white rounded-lg shadow-md p-6 transition-shadow duration-300 hover:shadow-lg;
   }
   
   .container-custom {
-    @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-section;
+    @apply py-20;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
