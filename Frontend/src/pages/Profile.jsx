@@ -89,26 +89,29 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">My Profile</h1>
+    <div className="min-h-screen bg-light-gray py-12">
+      <div className="container-custom">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold mb-10 text-dark">My Profile</h1>
 
           <div className="grid grid-cols-1 gap-6">
             {/* Profile Information */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold">Profile Information</h2>
+            <div className="bg-white rounded-card shadow-card p-8">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-dark">Profile Information</h2>
                 {!editing && (
                   <Button onClick={() => setEditing(true)} variant="outline">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
                     Edit
                   </Button>
                 )}
               </div>
 
               {editing ? (
-                <form onSubmit={handleUpdateProfile} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <form onSubmit={handleUpdateProfile} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <Input
                       label="First Name"
                       name="firstName"
@@ -132,8 +135,11 @@ const Profile = () => {
                     onChange={handleChange}
                     required
                   />
-                  <div className="flex gap-3">
+                  <div className="flex gap-4 pt-4">
                     <Button type="submit" loading={loading}>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
                       Save Changes
                     </Button>
                     <Button
@@ -153,34 +159,37 @@ const Profile = () => {
                   </div>
                 </form>
               ) : (
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-sm text-gray-600">Name</span>
-                    <p className="font-semibold">
+                <div className="space-y-6">
+                  <div className="p-6 bg-light-gray rounded-button">
+                    <span className="text-sm text-gray-600 block mb-1">Name</span>
+                    <p className="text-lg font-semibold text-dark">
                       {user?.firstName} {user?.lastName}
                     </p>
                   </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Email</span>
-                    <p className="font-semibold">{user?.email}</p>
+                  <div className="p-6 bg-light-gray rounded-button">
+                    <span className="text-sm text-gray-600 block mb-1">Email</span>
+                    <p className="text-lg font-semibold text-dark">{user?.email}</p>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Change Password */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold">Change Password</h2>
+            <div className="bg-white rounded-card shadow-card p-8">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-dark">Change Password</h2>
                 {!changingPassword && (
                   <Button onClick={() => setChangingPassword(true)} variant="outline">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    </svg>
                     Change
                   </Button>
                 )}
               </div>
 
               {changingPassword ? (
-                <form onSubmit={handleChangePassword} className="space-y-4">
+                <form onSubmit={handleChangePassword} className="space-y-6">
                   <Input
                     label="Current Password"
                     type="password"
@@ -205,8 +214,11 @@ const Profile = () => {
                     onChange={handlePasswordChange}
                     required
                   />
-                  <div className="flex gap-3">
+                  <div className="flex gap-4 pt-4">
                     <Button type="submit" loading={passwordLoading}>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
                       Update Password
                     </Button>
                     <Button
@@ -226,21 +238,29 @@ const Profile = () => {
                   </div>
                 </form>
               ) : (
-                <p className="text-gray-600">••••••••</p>
+                <div className="p-6 bg-light-gray rounded-button">
+                  <p className="text-gray-600">••••••••</p>
+                </div>
               )}
             </div>
 
             {/* Quick Links */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-4">Quick Links</h2>
-              <div className="space-y-2">
-                <Link
-                  to="/order-history"
-                  className="block text-primary-600 hover:text-primary-700"
-                >
-                  View Order History →
-                </Link>
-              </div>
+            <div className="bg-white rounded-card shadow-card p-8">
+              <h2 className="text-2xl font-bold mb-6 text-dark">Quick Links</h2>
+              <Link
+                to="/order-history"
+                className="flex items-center justify-between p-4 bg-light-gray rounded-button hover:bg-primary/10 transition-all duration-300 group"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  <span className="font-medium text-dark">View Order History</span>
+                </div>
+                <svg className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>

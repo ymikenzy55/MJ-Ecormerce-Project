@@ -6,19 +6,41 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Urbanist', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          DEFAULT: '#FF6B35',
+          hover: '#FF8C42',
+          light: '#FFB088',
+          dark: '#E55A2B',
         },
+        dark: {
+          DEFAULT: '#0A0A0A',
+          light: '#1A1A1A',
+          lighter: '#2A2A2A',
+        },
+        light: {
+          DEFAULT: '#FFFFFF',
+          gray: '#F8F9FA',
+          border: '#E5E7EB',
+          card: '#F3F4F6',
+        },
+      },
+      maxWidth: {
+        'container': '1280px',
+      },
+      spacing: {
+        'section': '80px',
+      },
+      borderRadius: {
+        'card': '8px',
+        'button': '6px',
+      },
+      boxShadow: {
+        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+        'card-hover': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       },
     },
   },

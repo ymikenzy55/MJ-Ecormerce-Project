@@ -1,16 +1,18 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap');
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  --color-primary: #FF6B35;
+  --color-primary-hover: #FF8C42;
+  --color-primary-light: #FFB088;
+  --color-primary-dark: #E55A2B;
+  --color-dark: #0A0A0A;
+  --color-dark-light: #1A1A1A;
+  --color-dark-lighter: #2A2A2A;
+  --color-light: #FFFFFF;
+  --color-light-gray: #F8F9FA;
+  --color-light-border: #E5E7EB;
+  --color-light-card: #F3F4F6;
 }
 
 * {
@@ -20,11 +22,10 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 .line-clamp-2 {
@@ -34,38 +35,65 @@ body {
   overflow: hidden;
 }
 
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 m-0;
+    @apply bg-light text-dark m-0;
   }
   
   * {
     @apply box-border;
   }
+
+  h1 {
+    @apply text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl font-bold;
+  }
+
+  p {
+    @apply text-base;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-primary hover:bg-primary-hover text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-dark hover:bg-dark-light text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
-  .btn-danger {
-    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-6 rounded-button transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px];
   }
   
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200;
+    @apply w-full px-4 py-3 border border-light-border rounded-button focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-300 bg-white text-dark min-h-[44px];
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white rounded-card shadow-card p-6 transition-shadow duration-300 hover:shadow-card-hover;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-section;
   }
 }

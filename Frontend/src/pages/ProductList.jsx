@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import apiClient from '../api/client';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Button from '../components/Button';
 import toast from 'react-hot-toast';
 
 const ProductList = () => {
@@ -18,6 +19,7 @@ const ProductList = () => {
   });
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -71,98 +73,122 @@ const ProductList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">Products</h1>
+    <div className="min-h-screen bg-light-gray py-12">
+      <div className="container-custom">
+        <div className="mb-12">
+          <h1 className="text-5xl font-bold text-dark mb-4">Our Products</h1>
+          <p className="text-lg text-gray-600">Discover quality electrical products for all your needs</p>
+        </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Search
-              </label>
-              <input
-                type="text"
-                value={filters.search}
-                onChange={(e) => handleFilterChange('search', e.target.value)}
-                placeholder="Search products..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
-            </div>
+        <div className="bg-white rounded-card shadow-card p-6 mb-8">
+          <div className="flex items-center justify-between mb-6 lg:mb-0">
+            <h2 className="text-xl font-semibold text-dark">Filters</h2>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="lg:hidden text-primary font-medium"
+            >
+              {showFilters ? 'Hide' : 'Show'} Filters
+            </button>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category
-              </label>
-              <select
-                value={filters.category}
-                onChange={(e) => handleFilterChange('category', e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              >
-                <option value="">All Categories</option>
-                <option value="Lighting">Lighting</option>
-                <option value="Wiring">Wiring</option>
-                <option value="Tools">Tools</option>
-              </select>
-            </div>
+          <div className={`${showFilters ? 'block' : 'hidden'} lg:block`}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+              <div>
+                <label className="block text-base font-medium text-dark mb-2">
+                  Search
+                </label>
+                <input
+                  type="text"
+                  value={filters.search}
+                  onChange={(e) => handleFilterChange('search', e.target.value)}
+                  placeholder="Search products..."
+                  className="input-field"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Price Range
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="number"
-                  value={filters.minPrice}
-                  onChange={(e) => handleFilterChange('minPrice', e.target.value)}
-                  placeholder="Min"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                />
-                <input
-                  type="number"
-                  value={filters.maxPrice}
-                  onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
-                  placeholder="Max"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                />
+              <div>
+                <label className="block text-base font-medium text-dark mb-2">
+                  Category
+                </label>
+                <select
+                  value={filters.category}
+                  onChange={(e) => handleFilterChange('category', e.target.value)}
+                  className="input-field"
+                >
+                  <option value="">All Categories</option>
+                  <option value="Lighting">Lighting</option>
+                  <option value="Wiring">Wiring</option>
+                  <option value="Tools">Tools</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-base font-medium text-dark mb-2">
+                  Price Range
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="number"
+                    value={filters.minPrice}
+                    onChange={(e) => handleFilterChange('minPrice', e.target.value)}
+                    placeholder="Min"
+                    className="input-field"
+                  />
+                  <input
+                    type="number"
+                    value={filters.maxPrice}
+                    onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
+                    placeholder="Max"
+                    className="input-field"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-base font-medium text-dark mb-2">
+                  Sort By
+                </label>
+                <select
+                  value={filters.sortBy}
+                  onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+                  className="input-field"
+                >
+                  <option value="newest">Newest First</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Sort By
-              </label>
-              <select
-                value={filters.sortBy}
-                onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              >
-                <option value="newest">Newest First</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-              </select>
-            </div>
+            <button
+              onClick={handleClearFilters}
+              className="mt-6 text-base font-medium text-primary hover:text-primary-hover transition-colors duration-300"
+            >
+              Clear All Filters
+            </button>
           </div>
-
-          <button
-            onClick={handleClearFilters}
-            className="mt-4 text-sm text-primary-600 hover:text-primary-700"
-          >
-            Clear Filters
-          </button>
         </div>
 
         {/* Products Grid */}
         {loading ? (
-          <LoadingSpinner />
+          <div className="flex justify-center py-20">
+            <LoadingSpinner />
+          </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">No products found</p>
+          <div className="text-center py-20 bg-white rounded-card shadow-card">
+            <svg className="w-24 h-24 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+            </svg>
+            <h3 className="text-2xl font-bold text-dark mb-2">No products found</h3>
+            <p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+            <Button onClick={handleClearFilters} variant="primary">
+              Clear Filters
+            </Button>
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12">
               {products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
@@ -170,24 +196,32 @@ const ProductList = () => {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center gap-2">
-                <button
+              <div className="flex justify-center items-center gap-4">
+                <Button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
-                  className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                  variant="outline"
                 >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
                   Previous
-                </button>
-                <span className="px-4 py-2">
+                </Button>
+                
+                <span className="text-base font-medium text-dark px-4">
                   Page {page} of {totalPages}
                 </span>
-                <button
+                
+                <Button
                   onClick={() => setPage(page + 1)}
                   disabled={page === totalPages}
-                  className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                  variant="outline"
                 >
                   Next
-                </button>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Button>
               </div>
             )}
           </>

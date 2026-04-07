@@ -6,23 +6,27 @@ const Button = ({
   type = 'button',
   onClick,
   className = '',
+  fullWidth = false,
   ...props 
 }) => {
-  const baseStyles = 'px-6 py-2.5 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2';
+  const baseStyles = 'px-6 py-3 rounded-button font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[44px]';
   
   const variants = {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300 active:bg-gray-400',
-    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
-    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50',
+    primary: 'bg-primary text-white hover:bg-primary-hover active:bg-primary-dark shadow-sm hover:shadow-md',
+    secondary: 'bg-dark text-white hover:bg-dark-light active:bg-dark-lighter shadow-sm hover:shadow-md',
+    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
+    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-sm hover:shadow-md',
+    ghost: 'text-dark hover:bg-light-gray',
   };
+
+  const widthClass = fullWidth ? 'w-full' : '';
 
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled || loading}
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      className={`${baseStyles} ${variants[variant]} ${widthClass} ${className}`}
       {...props}
     >
       {loading && (

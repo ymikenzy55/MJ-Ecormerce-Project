@@ -44,22 +44,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
-              create a new account
-            </Link>
-          </p>
-        </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-light-gray py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full">
+        <div className="bg-white rounded-card shadow-card p-8 md:p-10">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold text-dark mb-3">
+              Welcome Back
+            </h2>
+            <p className="text-base text-gray-600">
+              Sign in to your account to continue
+            </p>
+          </div>
+          
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
               label="Email Address"
               type="email"
@@ -76,28 +73,41 @@ const Login = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="••••••••"
+              placeholder="Enter your password"
               required
             />
-          </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <Link to="/request-password-reset" className="font-medium text-primary-600 hover:text-primary-500">
-                Forgot your password?
+            <div className="flex items-center justify-end">
+              <Link 
+                to="/request-password-reset" 
+                className="text-sm font-medium text-primary hover:text-primary-hover transition-colors duration-300"
+              >
+                Forgot password?
               </Link>
             </div>
-          </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            loading={loading}
-            className="w-full"
-          >
-            Sign in
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              variant="primary"
+              loading={loading}
+              fullWidth
+            >
+              Sign In
+            </Button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-base text-gray-600">
+              Don't have an account?{' '}
+              <Link 
+                to="/register" 
+                className="font-semibold text-primary hover:text-primary-hover transition-colors duration-300"
+              >
+                Create account
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

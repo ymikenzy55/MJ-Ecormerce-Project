@@ -122,14 +122,14 @@ const AdminProductForm = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">
+    <div className="min-h-screen bg-light-gray py-12">
+      <div className="container-custom">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold mb-10 text-dark">
             {isEdit ? 'Edit Product' : 'Add New Product'}
           </h1>
 
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="bg-white rounded-card shadow-card p-8 space-y-8">
             <Input
               label="Product Name"
               name="name"
@@ -139,20 +139,20 @@ const AdminProductForm = () => {
             />
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Description <span className="text-red-500">*</span>
+              <label className="block text-base font-medium text-dark mb-2">
+                Description <span className="text-primary">*</span>
               </label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                rows="4"
+                rows="5"
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-light-border rounded-button focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white text-dark resize-none"
               ></textarea>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Input
                 label="Price"
                 type="number"
@@ -176,15 +176,15 @@ const AdminProductForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category <span className="text-red-500">*</span>
+              <label className="block text-base font-medium text-dark mb-2">
+                Category <span className="text-primary">*</span>
               </label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-light-border rounded-button focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white text-dark"
               >
                 <option value="Lighting">Lighting</option>
                 <option value="Wiring">Wiring</option>
@@ -193,23 +193,23 @@ const AdminProductForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-medium text-dark mb-3">
                 Product Images (URLs)
               </label>
               {formData.images.map((image, index) => (
-                <div key={index} className="flex gap-2 mb-2">
+                <div key={index} className="flex gap-3 mb-3">
                   <input
                     type="url"
                     value={image}
                     onChange={(e) => handleImageChange(index, e.target.value)}
                     placeholder="https://example.com/image.jpg"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="flex-1 px-4 py-3 border border-light-border rounded-button focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white text-dark"
                   />
                   {formData.images.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeImageField(index)}
-                      className="px-3 py-2 text-red-600 hover:text-red-700"
+                      className="px-4 py-3 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-button transition-all duration-300 font-medium"
                     >
                       Remove
                     </button>
@@ -219,15 +219,18 @@ const AdminProductForm = () => {
               <button
                 type="button"
                 onClick={addImageField}
-                className="text-primary-600 hover:text-primary-700 text-sm"
+                className="text-primary hover:text-primary-hover font-medium transition-colors duration-300 flex items-center gap-2"
               >
-                + Add Another Image
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Add Another Image
               </button>
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold mb-3">Specifications</h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 bg-light-gray rounded-button">
+              <h3 className="text-xl font-bold mb-6 text-dark">Specifications</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <Input
                   label="Brand"
                   name="brand"
@@ -240,7 +243,7 @@ const AdminProductForm = () => {
                   value={formData.specifications.model}
                   onChange={handleSpecChange}
                 />
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <Input
                     label="Warranty"
                     name="warranty"
@@ -251,28 +254,32 @@ const AdminProductForm = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3 p-4 bg-light-gray rounded-button">
               <input
                 type="checkbox"
                 id="isActive"
                 name="isActive"
                 checked={formData.isActive}
                 onChange={handleChange}
-                className="rounded"
+                className="w-5 h-5 rounded border-light-border text-primary focus:ring-primary"
               />
-              <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
+              <label htmlFor="isActive" className="text-base font-medium text-dark cursor-pointer">
                 Product is active
               </label>
             </div>
 
-            <div className="flex gap-3 pt-4">
-              <Button type="submit" loading={submitting}>
+            <div className="flex gap-4 pt-6 border-t border-light-border">
+              <Button type="submit" loading={submitting} className="text-lg px-8 py-4">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
                 {isEdit ? 'Update Product' : 'Create Product'}
               </Button>
               <Button
                 type="button"
                 variant="secondary"
                 onClick={() => navigate('/admin/products')}
+                className="text-lg px-8 py-4"
               >
                 Cancel
               </Button>

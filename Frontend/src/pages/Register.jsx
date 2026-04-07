@@ -89,22 +89,19 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500">
-              sign in to existing account
-            </Link>
-          </p>
-        </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-light-gray py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full">
+        <div className="bg-white rounded-card shadow-card p-8 md:p-10">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold text-dark mb-3">
+              Create Account
+            </h2>
+            <p className="text-base text-gray-600">
+              Join us and start shopping today
+            </p>
+          </div>
+          
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <Input
                 label="First Name"
@@ -143,7 +140,7 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="••••••••"
+              placeholder="Minimum 8 characters"
               error={errors.password}
               required
             />
@@ -154,21 +151,33 @@ const Register = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              placeholder="••••••••"
+              placeholder="Re-enter your password"
               error={errors.confirmPassword}
               required
             />
-          </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            loading={loading}
-            className="w-full"
-          >
-            Create Account
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              variant="primary"
+              loading={loading}
+              fullWidth
+            >
+              Create Account
+            </Button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-base text-gray-600">
+              Already have an account?{' '}
+              <Link 
+                to="/login" 
+                className="font-semibold text-primary hover:text-primary-hover transition-colors duration-300"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
