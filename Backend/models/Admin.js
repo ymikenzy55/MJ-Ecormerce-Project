@@ -39,9 +39,7 @@ const adminSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Unique index on email
-adminSchema.index({ email: 1 });
-
+// Email index is already created by unique: true in schema
 // Index on role
 adminSchema.index({ role: 1 });
 

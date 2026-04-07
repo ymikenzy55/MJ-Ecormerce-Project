@@ -52,7 +52,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index on email for authentication performance
-userSchema.index({ email: 1 });
+// Email index is already created by unique: true in schema
 
 module.exports = mongoose.model('User', userSchema);

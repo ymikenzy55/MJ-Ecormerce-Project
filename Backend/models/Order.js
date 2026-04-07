@@ -91,8 +91,7 @@ const orderSchema = new mongoose.Schema({
 // Index on userId for user order history
 orderSchema.index({ userId: 1 });
 
-// Unique index on orderNumber
-orderSchema.index({ orderNumber: 1 });
+// orderNumber index is already created by unique: true in schema
 
 // Index on createdAt descending
 orderSchema.index({ createdAt: -1 });

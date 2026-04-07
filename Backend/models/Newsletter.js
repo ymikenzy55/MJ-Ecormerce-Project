@@ -28,9 +28,7 @@ const newsletterSchema = new mongoose.Schema({
   }
 });
 
-// Unique index on email
-newsletterSchema.index({ email: 1 });
-
+// Email index is already created by unique: true in schema
 // Index on isActive
 newsletterSchema.index({ isActive: 1 });
 
